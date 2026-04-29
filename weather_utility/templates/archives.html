@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WeatherIntel | Archives</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <nav class="topnav">
+        <div class="topnav__brand">
+          <p class="eyebrow" style="margin: 0">The Living Almanac</p>
+          <h2>WeatherIntel</h2>
+        </div>
+        <div class="topnav__unit-toggle">
+          <button class="pill is-active" type="button" data-unit="celsius">&deg;C</button>
+          <button class="pill" type="button" data-unit="fahrenheit">&deg;F</button>
+        </div>
+        <div class="topnav__right">
+          <span class="topnav__location">Historical Ledger</span>
+          <div class="pill-group" aria-label="Primary navigation">
+            <a class="pill" href="/" data-nav-link>Forecast</a>
+            <a class="pill" href="/insights" data-nav-link>Insights</a>
+            <a class="pill" href="/maps" data-nav-link>Maps</a>
+            <a class="pill is-active" href="/archives" data-nav-link>Archives</a>
+          </div>
+        </div>
+      </nav>
+
+      <main class="main archives-layout">
+        <header>
+          <p class="eyebrow">Historical Ledger</p>
+          <h1>Archive Explorer</h1>
+          <p class="metric__label">
+            Showing <span id="archiveResultCount">0</span> records
+          </p>
+        </header>
+
+        <form class="archive-search-form" data-archive-form>
+          <div class="form-grid">
+            <input class="input-field" type="text" id="archiveLocation" name="location" placeholder="Location (e.g. coastal)" />
+            <input class="input-field" type="date" id="archiveDateFrom" name="date_from" />
+            <input class="input-field" type="date" id="archiveDateTo" name="date_to" />
+          </div>
+          <div class="archive-search-actions">
+            <section class="chip-row" aria-label="Archive filters">
+              <button class="chip is-active" type="button" data-chip>Heatwaves</button>
+              <button class="chip" type="button" data-chip>Blizzards</button>
+              <button class="chip" type="button" data-chip>Rainfall</button>
+            </section>
+            <button class="archive-search-btn" type="submit">Search Archive</button>
+          </div>
+        </form>
+
+        <section class="archive-cards" id="archiveCards"></section>
+        <p class="archive-empty" id="archiveEmptyState" hidden>No records match this filter combination.</p>
+
+        <footer class="site-footer">
+          <p class="site-footer__meta">WeatherIntel &middot; Searchable weather memory across historic events</p>
+          <div class="site-footer__links">
+            <a class="pill" href="/" data-nav-link>Forecast</a>
+            <a class="pill" href="/insights" data-nav-link>Insights</a>
+            <a class="pill" href="/maps" data-nav-link>Maps</a>
+            <a class="pill is-active" href="/archives" data-nav-link>Archives</a>
+          </div>
+        </footer>
+      </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  </body>
+</html>

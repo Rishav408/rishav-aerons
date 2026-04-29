@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WeatherIntel | Insights</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <nav class="topnav">
+        <div class="topnav__brand">
+          <p class="eyebrow" style="margin: 0">The Living Almanac</p>
+          <h2>WeatherIntel</h2>
+        </div>
+        <div class="topnav__unit-toggle">
+          <button class="pill is-active" type="button" data-unit="celsius">&deg;C</button>
+          <button class="pill" type="button" data-unit="fahrenheit">&deg;F</button>
+        </div>
+        <div class="topnav__right">
+          <span class="topnav__location">Editorial Intelligence</span>
+          <div class="pill-group" aria-label="Primary navigation">
+            <a class="pill" href="/" data-nav-link>Forecast</a>
+            <a class="pill is-active" href="/insights" data-nav-link>Insights</a>
+            <a class="pill" href="/maps" data-nav-link>Maps</a>
+            <a class="pill" href="/archives" data-nav-link>Archives</a>
+          </div>
+        </div>
+      </nav>
+
+      <main class="main">
+        <section class="insights-layout">
+          <article class="panel insights-content">
+            <form class="search-wrap" data-insight-form>
+              <label class="eyebrow" for="insight-city">Search Location</label>
+              <input
+                class="search-input"
+                id="insight-city"
+                name="city"
+                type="search"
+                placeholder="Search locations..."
+                autocomplete="off"
+                data-insight-input
+              />
+            </form>
+            <p class="status-note" data-status-message hidden></p>
+
+            <section class="panel insight-brief">
+              <p class="eyebrow">AI Weather Insights &middot; Powered by Gemini</p>
+              <h1 class="article-headline" id="insightHeadline">Kolkata Weather Brief</h1>
+
+              <div class="insight-metrics">
+                <span class="metric metric--chip"><strong>Condition:</strong> <span id="insightCondition">Hazy Sunlight</span></span>
+                <span class="metric metric--chip"><strong>Temp:</strong> <span id="insightTemperature">31&deg;C</span></span>
+                <span class="metric metric--chip"><strong>Humidity:</strong> <span id="insightHumidity">62%</span></span>
+              </div>
+
+              <p id="insightBody" class="insight-body">
+                WeatherIntel model fallback: Kolkata is currently seeing hazy sunlight around 31 degrees C, with
+                moderate humidity keeping conditions muggy through late afternoon.
+              </p>
+              <ul id="insightTips" class="insight-tips"></ul>
+            </section>
+
+            <section class="insight-extra-grid">
+              <article class="insight-extra-card">
+                <p class="eyebrow">Signal Board</p>
+                <ul class="signal-list" id="signalBoard">
+                  <li>Loading signals...</li>
+                </ul>
+              </article>
+              <article class="insight-extra-card">
+                <p class="eyebrow">Action Checklist</p>
+                <ul class="checklist" id="actionChecklist">
+                  <li>Loading checklist...</li>
+                </ul>
+              </article>
+            </section>
+          </article>
+
+          <aside class="panel panel--compact">
+            <p class="eyebrow">Environmental Indicators</p>
+            <div class="kpi-list">
+              <section class="kpi-item">
+                <p class="metric__label">Air Quality</p>
+                <p class="metric__value" id="indicatorAqi">AQI --</p>
+              </section>
+              <section class="kpi-item">
+                <p class="metric__label">Pollen</p>
+                <p class="metric__value" id="indicatorPollen">--</p>
+              </section>
+              <section class="kpi-item">
+                <p class="metric__label">Soil Moisture</p>
+                <p class="metric__value" id="indicatorSoil">--</p>
+              </section>
+              <section class="kpi-item">
+                <p class="metric__label">Heat Stress Window</p>
+                <p class="metric__value" id="indicatorHeatWindow">--</p>
+              </section>
+            </div>
+          </aside>
+        </section>
+
+        <footer class="site-footer">
+          <p class="site-footer__meta">WeatherIntel &middot; AI-guided environmental briefing for planning teams</p>
+          <div class="site-footer__links">
+            <a class="pill" href="/" data-nav-link>Forecast</a>
+            <a class="pill is-active" href="/insights" data-nav-link>Insights</a>
+            <a class="pill" href="/maps" data-nav-link>Maps</a>
+            <a class="pill" href="/archives" data-nav-link>Archives</a>
+          </div>
+        </footer>
+      </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/weather.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  </body>
+</html>
